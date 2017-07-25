@@ -61,21 +61,40 @@ function initMap() {
 }
 
 
+function compareDistance(){
 
-function downloadUrl(url, callback) {
-  var request = window.ActiveXObject ?
-      new ActiveXObject('Microsoft.XMLHTTP') :
-      new XMLHttpRequest;
+	 if (navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(function(position) {
+	      var pos = {
+		  lat: position.coords.latitude,
+		  lng: position.coords.longitude
+	      };
 
-  request.onreadystatechange = function() {
-    if (request.readyState == 4) {
-      request.onreadystatechange = doNothing;
-      callback(request, request.status);
-    }
-  };
+	      //make ajax request here to send data of position of customer and starbucks 
+	  
+		  axios.get('/'+pos.lat+'/'+pos.lng)
+			  .then(function (response) {
+			    console.log(response);
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });
 
-  request.open('GET', url, true);
-  request.send(null);
+
+	      }, function() {
+		  handleLocationError(true, infoWindow, map.getCenter());
+	    });
+	  }
+	  else {   
+	    handleLocationError(false, infoWindow, map.getCenter());
+	  }
+
+	  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+		infoWindow.setPosition(pos);
+		infoWindow.setContent(browserHasGeolocation ?
+		'Error: The Geolocation service failed.' :
+		'Error: Your browser doesn\'t support geolocation.');
+	  }
+	
+
 }
-
-function doNothing() {}
