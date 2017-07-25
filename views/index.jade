@@ -3,13 +3,17 @@ extends layout
 
 block content
   h1 #{title}
+  
+  div(style='border:1px solid #111111;width:170px;position:relative;left:60px;background-color:#337799;cursor:pointer',onclick='compareDistance()').
+    closest starbucks from me
+
   ul
      for starbuck in starbucks
        li(style='display:none',id='#{starbuck.id}',longitude='#{starbuck.location.longitude}',latitude='#{starbuck.location.latitude}' name='#{starbuck.name}')
 
   div#map
 
-  script(src='/javascripts/allShops.js')
+  script(src='public/javascripts/allShops.js')
 
   script(async='true',defer='true',src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDskygQHdPSPWnSe9QhlatO-cblyrmvflU&callback=initMap')
 

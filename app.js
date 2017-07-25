@@ -19,8 +19,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/public',express.static(__dirname + '/public'));
+app.use('/js',express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/js',express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/css',express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/axios',express.static(__dirname + '/node_modules/axios/dist/axios.min.js'));
 app.use('/', index);
 
 // catch 404 and forward to error handler
