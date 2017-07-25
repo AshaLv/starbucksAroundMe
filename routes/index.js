@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var starbucks = require('../starbucks_new_york.json');
 var mapController = require('../controllers/mapController')
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { 

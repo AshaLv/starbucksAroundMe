@@ -4,7 +4,7 @@ extends layout
 block content
   h1 #{title}
   
-  div(style='border:1px solid #111111;width:170px;position:relative;left:60px;background-color:#337799;cursor:pointer',onclick='compareDistance()',data-toggle='modal',data-target='#listOfSortedStarbucks').
+  a(style='border:1px solid #111111;width:170px;position:relative;left:60px;background-color:#dce4e8;cursor:pointer',onclick='compareDistance()',data-toggle='modal',data-target='#listOfSortedStarbucks').
     closest starbuck to furthest starbuck
 
   ul
@@ -21,6 +21,7 @@ block content
         div.modal-body(style='min-height:500px;')
           
 
+  script(src='public/javascripts/allShopsCool.js')
   script(src='public/javascripts/allShops.js')
 
   script(async='true',defer='true',src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDskygQHdPSPWnSe9QhlatO-cblyrmvflU&callback=initMap')
