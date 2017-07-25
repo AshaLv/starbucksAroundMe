@@ -1,6 +1,15 @@
 extends layout
 
+
 block content
   h1 #{title}
+  ul
+     for starbuck in starbucks
+       li(style='display:none',id='#{starbuck.id}',longitude='#{starbuck.location.longitude}',latitude='#{starbuck.location.latitude}' name='#{starbuck.name}')
 
+  div#map
+
+  script(src='/javascripts/allShops.js')
+
+  script(async='true',defer='true',src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDskygQHdPSPWnSe9QhlatO-cblyrmvflU&callback=initMap')
 
