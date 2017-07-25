@@ -50,14 +50,20 @@ exports.compareDistance = function(req,res) {
  
    //make array of starbuck objects consists of name and distance which is in variable DISTANDNAMEANDADDR
     
-	
+	//it is stored in distAndNameAndAddr variable!	
 
    //use sort method to sort starbuck objects ascendently
     
 
+   distAndNameAndAddr.sort(function(a,b){
+
+       return a.distance-b.distance;
+
+   });
+
    
 
-   //return starbucks object
+   //return sorted starbucks object
 
     
    res.send(distAndNameAndAddr);
