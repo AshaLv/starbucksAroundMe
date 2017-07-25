@@ -4,14 +4,22 @@ extends layout
 block content
   h1 #{title}
   
-  div(style='border:1px solid #111111;width:170px;position:relative;left:60px;background-color:#337799;cursor:pointer',onclick='compareDistance()').
-    closest starbucks from me
+  div(style='border:1px solid #111111;width:170px;position:relative;left:60px;background-color:#337799;cursor:pointer',onclick='compareDistance()',data-toggle='modal',data-target='#listOfSortedStarbucks').
+    closest starbuck to furthest starbuck
 
   ul
      for starbuck in starbucks
        li(style='display:none',id='#{starbuck.id}',longitude='#{starbuck.location.longitude}',latitude='#{starbuck.location.latitude}' name='#{starbuck.name}')
 
   div#map
+
+  div.modal.fade#listOfSortedStarbucks
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          h4.modal-title Closest starbuck to Furthest starbuck
+        div.modal-body(style='min-height:500px;')
+          
 
   script(src='public/javascripts/allShops.js')
 

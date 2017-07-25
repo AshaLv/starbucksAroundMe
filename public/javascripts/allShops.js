@@ -1,3 +1,5 @@
+
+
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: new google.maps.LatLng(40.760975, -73.979729),
@@ -62,6 +64,8 @@ function initMap() {
 
 
 function compareDistance(){
+	 
+	 $('.modal-body').empty();
 
 	 if (navigator.geolocation) {
 	    navigator.geolocation.getCurrentPosition(function(position) {
@@ -70,14 +74,26 @@ function compareDistance(){
 		  lng: position.coords.longitude
 	      };
 
-	      //make ajax request here to send data of position of customer and starbucks 
+	      //make ajax request here to send data of position of customer and starbucks
+	           
 	  
 		  axios.get('/'+pos.lat+'/'+pos.lng)
 			  .then(function (response) {
-			    console.log(response);
+		            var sortedStarbucks = response.data;
+			    
+                            
+				
+			    for(var i=0;i<sortedStarbucks.length;i++){
+			
+			        $('.modal-body').append('<ul><li>distance:'+sortedStarbucks[i].distance+'</li><li>name:'+sortedStarbucks[i].name+'</li><li>street:'+sortedStarbucks[i].street+'</li></ul>');      
+				
+
+       			    }
+			    
+			   
 			  })
 			  .catch(function (error) {
-			    console.log(error);
+			    alert(error.data);
 			  });
 
 
